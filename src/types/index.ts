@@ -120,3 +120,26 @@ export interface AuthPayload {
   admin: Admin;
   token: string;
 }
+
+export interface IdeaPost {
+  id: string;
+  author: User | Admin;
+  content: string;
+  timestamp: Date;
+  likes: number;
+  comments: Comment[];
+}
+
+export interface Comment {
+  id: string;
+  author: User | Admin;
+  content: string;
+  timestamp: Date;
+}
+
+export interface ChatMessage {
+  id: string;
+  sender: 'user' | 'bot';
+  content: string;
+  timestamp: Date;
+}

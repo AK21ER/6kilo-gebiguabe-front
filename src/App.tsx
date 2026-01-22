@@ -10,6 +10,7 @@ const ManageUsers = lazy(() => import("./pages/admin/ManageUsers"));
 const ManageAdmins = lazy(() => import("./pages/admin/ManageAdmins"));
 const Analytics = lazy(() => import("./pages/admin/Analytics"));
 const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
+const SocialFeed = lazy(() => import("./pages/SocialFeed"));
 const ProtectedRoute = lazy(() => import("./components/auth/ProtectedRoute"));
 
 const router = createBrowserRouter([
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
         element: <Analytics />,
       },
     ],
+  },
+  {
+    path: "/feed",
+    element: <SocialFeed />,
   },
 ]);
 function App() {
