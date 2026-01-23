@@ -10,6 +10,23 @@ A demo web app showcasing a community / events / parcel-like tracking UI and das
 
 `6 Kilo Gibi Gubae` is a demo web application that provides a modern, responsive UI for community/parcel/event management workflows. The demo highlights an interactive dashboard, item (parcel or event) listing, detail pages, and role-oriented actions (create, update, track).
 
+Changes
+New Page
+Social Feed: 
+src/pages/SocialFeed.tsx
+Accessible via /feed route.
+Displays the list of posts and the input for new posts.
+A new directory  added src/components/feed containing:
+
+PostInput
+: Text area for creating new posts.
+PostList
+: Renders the list of posts.
+PostItem
+: Individual post card with Like and Comment actions.
+CommentSection
+: Expandable section for viewing and adding comments.
+
 This README gives a complete developer-friendly guide so anyone can clone, run, and extend the app locally, plus sample code for frontend components and a suggested backend API.
 
 Live demo title and preview were pulled from the production site. :contentReference[oaicite:1]{index=1}
