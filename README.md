@@ -1,4 +1,4 @@
-# ፮ኪሎ ግቢ ጉባኤ — 6 Kilo Gibi Gubae
+6 Kilo Gibi Gubae
 
 A demo web app showcasing a community / events / parcel-like tracking UI and dashboard experience.
 

@@ -9,6 +9,7 @@ import {
   LogOut,
   Home,
   LucideHome,
+  MessageSquare,
 } from "lucide-react";
 import { t } from "i18next";
 import { memo, useCallback, useMemo } from "react";
@@ -60,6 +61,11 @@ const AdminSidebar = ({ isOpen, closeSidebar }: AdminSidebarProps) => {
         to: "/admin/analytics",
         icon: <BarChart2 size={20} />,
         label: t("admin.dashboard.analytics"),
+      },
+      {
+        to: "/feed",
+        icon: <MessageSquare size={20} />,
+        label: "Community Feed",
       },
     ];
 
@@ -127,9 +133,8 @@ const SidebarContent = memo(
     return (
       <>
         <div
-          className={`${
-            isMobile ? "pt-20" : "pt-6"
-          } flex items-center justify-between px-4 py-6`}
+          className={`${isMobile ? "pt-20" : "pt-6"
+            } flex items-center justify-between px-4 py-6`}
         >
           <img
             src={headerLogo}
@@ -159,8 +164,7 @@ const SidebarContent = memo(
                   end={true}
                   onClick={closeSidebar}
                   className={({ isActive }) =>
-                    `flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
-                      isActive ? "bg-white/10 text-gold" : "hover:bg-white/5"
+                    `flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${isActive ? "bg-white/10 text-gold" : "hover:bg-white/5"
                     }`
                   }
                   aria-current={locationPath === to ? "page" : undefined}

@@ -14,7 +14,8 @@
     "involvement": "Student Involvement",
     "gallery": "Gallery",
     "events": "Events",
-    "contact": "Contact"
+    "contact": "Contact",
+    "feed": "Community Feed"
   },
   "about": {
     "title": "About Us",
@@ -98,7 +99,6 @@
       }
     ]
   },
-
   "events": {
     "title": "Events & Announcements",
     "upcoming": "Upcoming Events",

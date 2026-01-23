@@ -14,6 +14,7 @@ const menu = [
 
   { key: "events", id: "events" },
   { key: "contact", id: "contact" },
+  { key: "feed", id: "feed" }
 ];
 
 const Navbar = () => {
@@ -45,6 +46,9 @@ const Navbar = () => {
 
   const scrollToSection = (sectionId: string) => {
     closeMenu();
+    if (sectionId === "feed") {
+      return; // Handle separately or click Link
+    }
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
@@ -53,23 +57,20 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
+        }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <div className="flex items-center space-x-2">
           <img
             src={headerLogo}
             alt="Header Logo"
-            className={`w-10 h-10 rounded-full ${
-              scrolled ? "opacity-100" : "opacity-80"
-            }`}
+            className={`w-10 h-10 rounded-full ${scrolled ? "opacity-100" : "opacity-80"
+              }`}
           />
           <h1
-            className={`font-bold text-xl ${
-              scrolled ? "text-liturgical-blue" : "text-white"
-            }`}
+            className={`font-bold text-xl ${scrolled ? "text-liturgical-blue" : "text-white"
+              }`}
           >
             {t("siteName")}
           </h1>
@@ -80,14 +81,24 @@ const Navbar = () => {
           <ul className="flex space-x-6">
             {menu.map((item) => (
               <li key={item.key}>
-                <button
-                  onClick={() => scrollToSection(item.id)}
-                  className={`font-medium hover:text-gold transition-colors ${
-                    scrolled ? "text-liturgical-blue" : "text-white"
-                  }`}
-                >
-                  {t(`nav.${item.key}`)}
-                </button>
+                {item.id === "feed" ? (
+                  <Link
+                    to="/feed"
+                    className={`font-medium hover:text-gold transition-colors ${scrolled ? "text-liturgical-blue" : "text-white"
+                      }`}
+                    onClick={closeMenu}
+                  >
+                    {t(`nav.${item.key}`)}
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => scrollToSection(item.id)}
+                    className={`font-medium hover:text-gold transition-colors ${scrolled ? "text-liturgical-blue" : "text-white"
+                      }`}
+                  >
+                    {t(`nav.${item.key}`)}
+                  </button>
+                )}
               </li>
             ))}
           </ul>
@@ -104,9 +115,8 @@ const Navbar = () => {
           <LanguageSwitcher />
           <button
             onClick={toggleMenu}
-            className={`p-1 rounded-md ${
-              scrolled ? "text-liturgical-blue" : "text-white"
-            }`}
+            className={`p-1 rounded-md ${scrolled ? "text-liturgical-blue" : "text-white"
+              }`}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -125,12 +135,22 @@ const Navbar = () => {
           <ul className="space-y-4">
             {menu.map((item) => (
               <li key={item.key}>
-                <button
-                  onClick={() => scrollToSection(item.id)}
-                  className="block w-full text-left text-liturgical-blue font-medium py-2"
-                >
-                  {t(`nav.${item.key}`)}
-                </button>
+                {item.id === "feed" ? (
+                  <Link
+                    to="/feed"
+                    className="block w-full text-left text-liturgical-blue font-medium py-2"
+                    onClick={closeMenu}
+                  >
+                    {t(`nav.${item.key}`)}
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => scrollToSection(item.id)}
+                    className="block w-full text-left text-liturgical-blue font-medium py-2"
+                  >
+                    {t(`nav.${item.key}`)}
+                  </button>
+                )}
               </li>
             ))}
             <li>
