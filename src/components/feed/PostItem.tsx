@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Heart, MessageCircle, Share2, MoreHorizontal } from 'lucide-react';
 import CommentSection, { Comment } from './CommentSection';
+import { toggleLikeApi, getCommentsApi, addCommentApi } from '../../api/feed';
 
 export interface Post {
     id: string;
@@ -20,27 +21,69 @@ export default function PostItem({ post }: PostItemProps) {
     const [isLiked, setIsLiked] = useState(post.liked || false);
     const [likesCount, setLikesCount] = useState(post.likes);
     const [showComments, setShowComments] = useState(false);
-    const [comments, setComments] = useState(post.comments);
+    const [comments, setComments] = useState<Comment[]>([]);
+    const [loadingComments, setLoadingComments] = useState(false);
 
-    const handleLike = () => {
-        // Backend Note: Implementation for liking a post API call needed here
-        if (isLiked) {
-            setLikesCount(prev => prev - 1);
-        } else {
-            setLikesCount(prev => prev + 1);
+    useEffect(() => {
+        if (showComments) {
+            fetchComments();
         }
-        setIsLiked(!isLiked);
+    }, [showComments]);
+
+    const fetchComments = async () => {
+        try {
+            setLoadingComments(true);
+            const response = await getCommentsApi(post.id);
+            if (response.success) {
+                const mappedComments: Comment[] = response.comments.map(c => ({
+                    id: c.id,
+                    author: c.author,
+                    content: c.content,
+                    timestamp: new Date(c.timestamp).toLocaleString()
+                }));
+                setComments(mappedComments);
+            }
+        } catch (err: any) {
+            console.error("Failed to fetch comments:", err);
+        } finally {
+            setLoadingComments(false);
+        }
     };
 
-    const handleAddComment = (content: string) => {
-        // Backend Note: Implementation for adding a comment API call needed here
-        const newComment: Comment = {
-            id: Date.now().toString(),
-            author: 'Current User', // This should come from auth context
-            content: content,
-            timestamp: 'Just now'
-        };
-        setComments([...comments, newComment]);
+    const handleLike = async () => {
+        const previousLiked = isLiked;
+        const previousCount = likesCount;
+
+        setIsLiked(!isLiked);
+        setLikesCount(prev => isLiked ? prev - 1 : prev + 1);
+
+        try {
+            const response = await toggleLikeApi(post.id);
+            if (response.success) {
+                setIsLiked(response.liked);
+            }
+        } catch (err) {
+            setIsLiked(previousLiked);
+            setLikesCount(previousCount);
+        }
+    };
+
+    const handleAddComment = async (content: string) => {
+        try {
+            const response = await addCommentApi(post.id, content);
+            if (response.success) {
+                const c = response.comment;
+                const newComment: Comment = {
+                    id: c.id,
+                    author: c.author,
+                    content: c.content,
+                    timestamp: 'Just now'
+                };
+                setComments([...comments, newComment]);
+            }
+        } catch (err: any) {
+            alert("Failed to add comment: " + err.message);
+        }
     };
 
     return (
@@ -87,7 +130,10 @@ export default function PostItem({ post }: PostItemProps) {
             </div>
 
             {showComments && (
-                <CommentSection comments={comments} onAddComment={handleAddComment} />
+                <div className="relative">
+                    {loadingComments && <div className="text-center py-2 text-sm text-text-secondary">Loading comments...</div>}
+                    <CommentSection comments={comments} onAddComment={handleAddComment} />
+                </div>
             )}
         </div>
     );

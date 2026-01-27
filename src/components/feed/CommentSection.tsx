@@ -40,7 +40,6 @@ export default function CommentSection({ comments, onAddComment }: CommentSectio
                         </div>
                     </div>
                 ))}
-                {/* Backend Note: Comments are currently mocked. Implementation for fetching real comments linked to post ID is needed. */}
             </div>
 
             <form onSubmit={handleSubmit} className="flex gap-2">

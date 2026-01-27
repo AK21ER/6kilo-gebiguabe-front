@@ -1,78 +1,94 @@
-6 Kilo Gibi Gubae
+# 6 Kilo Gibi Gubae
 
-A demo web app showcasing a community / events / parcel-like tracking UI and dashboard experience.
+A modern, feature-rich community management platform and interactive dashboard experience. Built with a focus on usability, accessibility, and high-performance frontend technologies.
 
- Live demo: [https://6kilogbigubae.vercel.app/](https://6kilogbigubae.vercel.app/) (production preview)
+Live demo: [6kilogbigubae.vercel.app](https://6kilogbigubae.vercel.app/)
 
-## Table of Contents
+---
 
-## About
+## 🚀 Key Features
 
-`6 Kilo Gibi Gubae` is a demo web application that provides a modern, responsive UI for community/parcel/event management workflows. The demo highlights an interactive dashboard, item (parcel or event) listing, detail pages, and role-oriented actions (create, update, track).
+### 📱 Social Community Feed
+Connect with your community through our interactive social hub:
+- **Share Ideas**: Post updates and thoughts in realtime.
+- **Engagement**: Like and comment on community posts.
+- **Rich Interaction**: Interactive UI elements with smooth transitions.
+- **Realtime Feedback**: Optimistic UI updates for a snappy feel.
 
-Changes
-New Page
-Social Feed: 
-src/pages/SocialFeed.tsx
-Accessible via /feed route.
-Displays the list of posts and the input for new posts.
-A new directory  added src/components/feed containing:
+### 🌐 Multilingual Support
+Full internationalization support for a truly inclusive experience:
+- **English & Amharic**: Seamlessly switch between languages.
+- **Localization**: Localized date formats, labels, and system messages.
+- **Persistent Choice**: Your language preference is remembered.
 
-PostInput
-: Text area for creating new posts.
-PostList
-: Renders the list of posts.
-PostItem
-: Individual post card with Like and Comment actions.
-CommentSection
-: Expandable section for viewing and adding comments.
+### 🤖 AI-Powered Chatbot
+Assistance at your fingertips:
+- **Instant Help**: Ask questions about the platform or community.
+- **Modern Interface**: Sleek, non-intrusive chat window on the landing page.
+- **Smart Responses**: Context-aware guidance for new and returning users.
 
-This README gives a complete developer-friendly guide so anyone can clone, run, and extend the app locally, plus sample code for frontend components and a suggested backend API.
+### 🔐 Admin Workspace
+A comprehensive management suite for platform administrators:
+- **Secure Access**: Protected routes with robust authentication logic.
+- **Insightful Analytics**: Real-time data visualization and platform metrics.
+- **User Management**: Efficiently oversee and manage platform participants.
+- **Role-Based Content**: Tailored interfaces based on administrative permissions.
 
-Live demo title and preview were pulled from the production site. :contentReference[oaicite:1]{index=1}
+---
 
-## Live Demo
+## 🛠️ Tech Stack
 
-Open the hosted demo:
+- **Frontend**: [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Routing**: [React Router DOM](https://reactrouter.com/)
+- **Internationalization**: [i18next](https://www.i18next.com/)
+- **Icons**: [Heroicons](https://heroicons.com/) / [Lucide](https://lucide.dev/)
+- **Deployment**: [Vercel](https://vercel.com/)
 
- [https://6kilogbigubae.vercel.app/](https://6kilogbigubae.vercel.app/) — please use it as the reference for intended look & feel. :contentReference[oaicite:2]{index=2}
+---
 
-## Key Features
+## 🏗️ Project Structure
 
-* Responsive dashboard and listing pages
-* Create / edit / delete items (shipments, events or community posts)
-* Item detail views with status and history timeline
-* Search and filter capability (by id, status, or date)
-* Client-focused UX: clear CTA, simple forms, confirmation dialogs
-* Ready for integration with a backend API (examples included below)
+```text
+src/
+├── api/             # Backend API integration layers
+├── components/      # Reusable UI components
+│   ├── feed/       # Social feed specific components (PostItem, PostInput, etc.)
+│   ├── landing/    # Landing page sections and Chatbot
+│   └── ui/         # Core design system components
+├── locales/         # Translation files (en.json, am.json)
+├── pages/           # Main application routes and Admin Dashboard
+├── store/           # State management logic
+└── types/           # Global TypeScript definitions
+```
 
-## Tech Stack
+---
 
-Primary technologies assumed for this demo (adjust if your repo differs):
-
-* Frontend : React or Next.js (TypeScript recommended)
-* Styling : Tailwind CSS (or plain CSS with utility classes)
-* State management : Redux Toolkit or React Context
-* HTTP client : Axios or fetch
-* Forms : React Hook Form or controlled components
-* Icons / UI : Heroicons / Font Awesome / custom SVGs
-* Deployment : Vercel
-
-## Design & UX Notes
-
-* Focus on minimal onboarding friction and clear CTAs.
-* Use large tappable areas for mobile and keep forms short.
-* Use subtle motion for state changes (status update, success toast).
-* Keep colors high-contrast for readability and accessibility.
-
-## Getting Started (Full Setup)
-
-Below are detailed steps to run the app locally and an optional minimal backend to simulate API responses.
+## 🚦 Getting Started
 
 ### Prerequisites
+- Node.js (v18+)
+- npm or yarn
 
-- Node.js (v16+) and npm or yarn
-- Git
-- Optional: MongoDB (local / Atlas) or PostgreSQL if you want to persist data
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/6kilo-gebiguabe-front.git
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-### Install & Run (Frontend Only)
+---
+
+## 📄 License
+Detailed license information coming soon.
+
+## 🤝 Contributing
+Contributions are welcome! Please feel free to submit a Pull Request.
